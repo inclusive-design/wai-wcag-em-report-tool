@@ -19,13 +19,13 @@
         * -->
         {#each guidelineCriteria(guideline) as criterion (criterion.num)}
           <tr class="Auditor__Assertion">
-            <th scope="row" class="Auditor__Assertion-SC" id={`criterion-${criterion.num.replaceAll('.', '')}`}>{criterion.num}: {TRANSLATED.CRITERIA[criterion.num].TITLE}</th>
+            <th scope="row" class="Auditor__Assertion-SC" id={`criterion-${criterion.num.replaceAll('.', '')}`}><a href="https://www.w3.org/WAI/WCAG{WCAG_VERSION}/Understanding/{criterion.id}.html">{criterion.num}: {TRANSLATED.CRITERIA[criterion.num].TITLE}</a></th>
             <td>
                 {#each scopeAssertion(criterion) as assertion}
                   {#if sampleAssertions(criterion).length}
                   <h6>{TRANSLATED.HEADING_SCOPE_RESULTS}</h6>
                   {/if}
-                  <p>        
+                  <p>
                     <span class="results-label-mobile">{TRANSLATED.HEADER_RESULT}:</span>
                     {assertion.result.outcome.title || TRANSLATED.TEXT_NOT_CHECKED}</p>
                 {:else}
@@ -87,7 +87,7 @@
                     d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
                   <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
                 </svg>
-              </Link>        
+              </Link>
             </td>
           </tr>
         {/each}
@@ -170,10 +170,12 @@
   export let criteria = [];
 
   const { translate, translateToObject } = getContext('app');
-  
+
   // marked.setOptions({
   //   sanitize: true
   // });
+
+  $: WCAG_VERSION = $scopeStore['WCAG_VERSION'].replace('.', '');
 
   $: TRANSLATED = {
     PRINCIPLES: $translateToObject('WCAG.PRINCIPLE'),
