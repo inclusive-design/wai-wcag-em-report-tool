@@ -36,12 +36,12 @@
 
   {#if editAbout}
   <button class="button button-secondary" on:click={toggleEditAbout}>
-    {TRANSLATED.BUTTON_SAVE}  
+    {TRANSLATED.BUTTON_SAVE}
     <span class="visually-hidden">{TRANSLATED.HEADING_ABOUT}</span>
   </button>
   {:else}
   <button class="button button-secondary" on:click={toggleEditAbout}>
-    {TRANSLATED.BUTTON_EDIT} 
+    {TRANSLATED.BUTTON_EDIT}
     <span class="visually-hidden">{TRANSLATED.HEADING_ABOUT}</span>
   </button>
   {/if}
@@ -51,17 +51,17 @@
   <h2>{TRANSLATED.HEADING_SUMMARY}</h2>
   {#if editExecutiveSummary}
     <div>
-      <ReportHeaderValue 
-        editing={editExecutiveSummary} 
-        multiline={true} 
-        field="EVALUATION_SUMMARY" 
+      <ReportHeaderValue
+        editing={editExecutiveSummary}
+        multiline={true}
+        field="EVALUATION_SUMMARY"
         store="summaryStore">
       </ReportHeaderValue>
     </div>
     <button class="button button-secondary" on:click={toggleEditExecutiveSummary}>
-      {TRANSLATED.BUTTON_SAVE} 
+      {TRANSLATED.BUTTON_SAVE}
       <span class="visually-hidden">{TRANSLATED.HEADING_SUMMARY}</span>
-    </button>  
+    </button>
   {:else}
     <div>
     {#if $summaryStore['EVALUATION_SUMMARY']}
@@ -71,7 +71,7 @@
     {/if}
     </div>
     <button class="button button-secondary" on:click={toggleEditExecutiveSummary}>
-      {TRANSLATED.BUTTON_EDIT} 
+      {TRANSLATED.BUTTON_EDIT}
       <span class="visually-hidden">{TRANSLATED.HEADING_SUMMARY}</span>
     </button>
   {/if}
@@ -137,12 +137,12 @@
 
   {#if editEvaluationScope}
   <button class="button button-secondary" on:click={toggleEditEvaluationScope}>
-    {TRANSLATED.BUTTON_SAVE}  
+    {TRANSLATED.BUTTON_SAVE}
     <span class="visually-hidden">{TRANSLATED.HEADING_SCOPE}</span>
   </button>
   {:else}
   <button class="button button-secondary" on:click={toggleEditEvaluationScope}>
-    {TRANSLATED.BUTTON_EDIT}  
+    {TRANSLATED.BUTTON_EDIT}
     <span class="visually-hidden">{TRANSLATED.HEADING_SCOPE}</span>
   </button>
   {/if}
@@ -161,7 +161,7 @@
   <ol>
     {#each report.samples as sample}
       <li>
-        <span>{sample.title}</span> - <span>{sample.description}</span>
+        <span>{sample.title}</span> - <a href="{sample.description}">{sample.description}</a>
       </li>
     {/each}
   </ol>
@@ -283,7 +283,7 @@
     specifics: $summaryStore['EVALUATION_SPECIFICS'],
     summary: $summaryStore['EVALUATION_SUMMARY'],
     title: $summaryStore['EVALUATION_TITLE'] || $translate('PAGES.REPORT.TITLE'),
-    tech: $exploreStore['TECHNOLOGIES_RELIED_UPON']
+    tech: $exploreStore['TECHNOLOGIES_RELIED_UPON'].join(", ")
   };
 
   let wcagVersions = [...WCAG_VERSIONS].reverse().map((version) => {
