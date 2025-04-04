@@ -176,7 +176,8 @@
   <p>{TRANSLATED.LABEL_NOT_PROVIDED}</p>
 {/if}
 
-<h2>{TRANSLATED.HEADING_SPECIFICS}</h2>
+<h2 id="other-comments">Other Comments</h2>
+<!-- <h2>{TRANSLATED.HEADING_SPECIFICS}</h2> -->
 <p>{@html marked(report.specifics) || TRANSLATED.LABEL_NOT_PROVIDED}</p>
 
 <h2 class='strip'>{TRANSLATED.HEADING_RESOURCES}</h2>
